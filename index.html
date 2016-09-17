@@ -1,8 +1,22 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="dia">
 <head>
+  <meta charset="utf-8">
+  <script src="angular.min.js"></script>
+  <script src="app.js"></script>
+  <style> body {font-size: 1.3em;}</style>
   <title>Hello Coursera </title>
 </head>
-<body>
-  <h1>Hello coursera</h1>
+<body >
+  <h1>name calc</h1>
+  <div ng-controller = "dic">
+    {{name}} has message: {{sayMessage()}}
+    <div>
+      <button ng-click = "feed()"> Feed</button>
+      <br>
+      <img ng-src="images/yaakov_{{state}}.png">
+    </div>
+  </div>
+
 </body>
 </html>
