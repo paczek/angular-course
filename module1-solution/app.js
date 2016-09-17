@@ -9,8 +9,6 @@ $scope.message ="";
 $scope.inputValue ="";
 
 $scope.checkIfTooMuch = function() {
-
-
   var stringToSplit = $scope.inputValue;
   if(stringToSplit.length == 0)
     $scope.message = "Please enter data first!";
