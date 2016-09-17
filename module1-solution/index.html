@@ -14,11 +14,11 @@
 <body ng-app="LunchCheck">
    <div class="container" ng-controller="LunchCheckController">
      <h1>Lunch Checker</h1>
-
          <div class="form-group">
              <input id="lunch-menu" type="text" ng-model="inputValue"
              placeholder="list comma separated dishes you usually have for lunch"
              class="form-control">
+             Empty string between commas is not considered as an item.
          </div>
          <div class="form-group">
              <button class="btn btn-default" ng-click="checkIfTooMuch()">Check If Too Much</button>
