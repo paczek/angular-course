@@ -10,9 +10,13 @@
 <body >
   <h1>name calc</h1>
   <div ng-controller = "dic">
-    {{name}} has message: {{sayMessage()}}
+    {{name}} has message: {{sayMessage()}} <br>
+    {{name}} has message: {{sayLovesMessage()}} <br>
+    Truth: {{sayLovesMessage() | truth : 'dupa' : 'yeah'}}
     <div>
+
       <button ng-click = "feed()"> Feed</button>
+      Cost: {{cookieCost | currency : "#blah" : 4}}
       <br>
       <img ng-src="images/yaakov_{{state}}.png">
     </div>
