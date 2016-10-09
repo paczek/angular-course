@@ -40,45 +40,53 @@
 
         narrow.findMenuItems = function(searchTerm) {
             narrow.firstCallExecuted = true;
+            MenuSearchService.clearItems();
             if (searchTerm === undefined || searchTerm.length === 0) {
-
                 return;
             }
 
             var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
 
-            promise.catch(function(error) {
+            promise
+            .catch(function(error) {
                     console.log(error);
                 })
         };
     }
 
 
-    MenuSearchService.$inject = ['$http', 'ApiBasePath']
+    MenuSearchService.$inject = ['$http', 'ApiBasePath', '$filter']
 
-    function MenuSearchService($http, ApiBasePath) {
+    function MenuSearchService($http, ApiBasePath, $filter) {
         var service = this;
         var found = [];
+
+        service.clearItems = function() {
+            found.length = 0;
+        };
 
         service.getItems = function() {
             return found;
         };
         service.getMatchedMenuItems = function(searchTerm) {
 
-            found = [];
+
             var response = $http({
                 method: "GET",
                 url: (ApiBasePath)
 
             }).then(function(result) {
-
+                found.length = 0;
                 for (var i = 0; i < result.data.menu_items.length; i++) {
-                    if (result.data.menu_items[i].name.indexOf(searchTerm) !== -1) {
+                    var nameToLowerCase = $filter('lowercase')(result.data.menu_items[i].name);
+                    if (nameToLowerCase.indexOf(searchTerm) !== -1) {
                         found.push(result.data.menu_items[i])
                     }
                 }
-
-            });
+            })
+            .catch(function(error) {
+                    console.log(error);
+                });
 
             return response;
 

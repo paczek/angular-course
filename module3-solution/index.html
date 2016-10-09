@@ -1,40 +1,33 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Narrow Down Your Menu Choice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
-  </head>
+</head>
 
-<body ng-app = "NarrowItDownApp">
-   <div class="container" >
-   <div ng-controller='NarrowItDownController as narrow'>
-    <h1>Narrow Down Your Chinese Menu Choice</h1>
-    <div class="form-group">
-      <input type="text" ng-model="narrow.searchTerm" placeholder="search term" class="form-control">
+<body ng-app="NarrowItDownApp">
+    <div class="container">
+        <div ng-controller='NarrowItDownController as narrow'>
+            <h1>Narrow Down Your Chinese Menu Choice</h1>
+            <div class="form-group">
+                <input type="text" ng-model="narrow.searchTerm" placeholder="search term" class="form-control">
+            </div>
+            <div class="form-group narrow-button">
+                <button class="btn btn-primary" ng-click="narrow.findMenuItems(narrow.searchTerm);">Narrow It Down For Me!</button>
+            </div>
+            <div class="error" ng-if="narrow.firstCallExecuted && narrow.isFoundItemsListEmpty()">
+                Nothing found!
+            </div>
+
+            <found-list items="narrow.getItems()" on-remove="narrow.getRidOfItem(index)"></found-list>
+
+        </div>
     </div>
-    <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="narrow.findMenuItems(narrow.searchTerm);">Narrow It Down For Me!</button>
-    </div>
-    <div class="error" ng-if="narrow.firstCallExecuted && narrow.isFoundItemsListEmpty()">
-      Nothing found!
-    </div>
-
-	<ul>
-	<li ng-repeat="item in narrow.getItems()">
-		{{ item.name}},{{item.short_name}},{{item.description}}
-    <button class="btn btn-default" ng-click="narrow.getRidOfItem($index)"><span class="glyphicon glyphicon-ok"></span> Don't want it!</button>
-	</li>
-	</ul>
-
-  <found-items
-  items="narrow.getItems();"
-       on-remove="narrow.getRidOfItem(index)"></found-items>
-
-  </div>
-</div>
 </body>
+
 </html>

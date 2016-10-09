@@ -1,9 +1,9 @@
 
 
 <ul>
-<li ng-repeat="item in list.getItems()">
+<li ng-repeat="item in items">
   {{ item.name}},{{item.short_name}},{{item.description}}
   <button class="btn btn-default" ng-click="narrow.getRidOfItem($index)"><span class="glyphicon glyphicon-ok"></span> Don't want it!</button>
-  <button ng-click="list.onRemove({index: $index});">Remove Item</button>
+  <button ng-click="onRemove({index: $index});">Remove Item</button>
 </li>
 </ul>
