@@ -78,7 +78,7 @@
             }).then(function(result) {
                 found.length = 0;
                 for (var i = 0; i < result.data.menu_items.length; i++) {
-                    var nameToLowerCase = $filter('lowercase')(result.data.menu_items[i].name);
+                    var nameToLowerCase = $filter('lowercase')(result.data.menu_items[i].description);
                     if (nameToLowerCase.indexOf(searchTerm) !== -1) {
                         found.push(result.data.menu_items[i])
                     }
